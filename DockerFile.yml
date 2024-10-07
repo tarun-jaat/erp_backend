@@ -1,0 +1,6 @@
+FROM node
+workdir /app
+copy . /app
+EXPOSE 9001:9001
+RUN npm install
+CMD npm start
