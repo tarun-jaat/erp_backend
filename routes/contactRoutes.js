@@ -1,7 +1,7 @@
 const { createContact, getAllContacts, getAllLeads, createLead, updateLead } = require("../controllers/contactController");
 const express = require("express");
 const { createQuotation, updateQuotation, getQuotation } = require("../controllers/quataionController");
-const { createTask } = require('../controllers/TaskController');
+const { createTask, getTasks } = require('../controllers/TaskController');
 
 const router = express.Router();
 
@@ -18,6 +18,7 @@ router.get("/quotations/:id",getQuotation );
 router.patch('/quotations/:id', updateQuotation);
 
 router.post('/createTask', createTask);
+router.get('/getTask',getTasks)
 
 
 module.exports = router;
