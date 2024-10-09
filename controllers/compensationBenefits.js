@@ -19,7 +19,7 @@ exports.createOrUpdateCompensationBenefits = async (req, res) => {
         employee,
         payroll,
         benefits,
-        compensationAnalysis
+        compensationAnalysis,
       });
       await compensationBenefits.save();
       res.json(compensationBenefits);
@@ -30,14 +30,28 @@ exports.createOrUpdateCompensationBenefits = async (req, res) => {
   }
 };
 
+exports.getAllCompensation = async (req, res) => {
+  try {
+    const compensationBenefits = await CompensationBenefits.find().populate(
+      "employee",
+      "firstName lastName position"
+    );
+    res.json(compensationBenefits);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+};
 exports.getCompensationBenefitsByEmployee = async (req, res) => {
   try {
     const compensationBenefits = await CompensationBenefits.findOne({
-      employee: req.params.employeeId
+      employee: req.params.employeeId,
     }).populate("employee", "firstName lastName position");
 
     if (!compensationBenefits) {
-      return res.status(404).json({ msg: "No compensation and benefits data found for this employee" });
+      return res.status(404).json({
+        msg: "No compensation and benefits data found for this employee",
+      });
     }
 
     res.json(compensationBenefits);

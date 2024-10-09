@@ -2,21 +2,19 @@ const mongoose = require("mongoose");
 
 const jobPostingSchema = new mongoose.Schema(
   {
-    title: { 
-      type: String, 
-      required: true 
+    title: {
+      type: String,
+      required: true,
     },
-    description: { 
-      type: String, 
-      required: true 
+    description: {
+      type: String,
+      required: true,
     },
-    skillsRequired: [
-      String
-    ],
-    status: { 
-      type: String, 
-      enum: ["open", "closed"], 
-      default: "open" 
+    skillsRequired: [String],
+    status: {
+      type: String,
+      enum: ["open", "closed"],
+      default: "open",
     },
     applicants: [
       {

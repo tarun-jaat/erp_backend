@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const onboardingTaskSchema = new mongoose.Schema(
   {
-    employeeId: {
+    employeeID: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Employee",
     },
